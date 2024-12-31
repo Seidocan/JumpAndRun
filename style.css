@@ -1,0 +1,280 @@
+@font-face {
+    font-family: 'Oi-Regular';
+    src: url(font/Oi-Regular.ttf);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(img/5_background/mybg.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.homescreen-buttons {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 720px;
+    gap: 20px;
+}
+
+canvas {
+    display: block;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px 0px #000000;
+}
+
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100% !important;
+    }
+
+    .panel-frame,
+    .button-panel-main {
+        width: 100% !important;
+    }
+
+    h1 {
+        display: none !important;
+    }
+
+    .hud-button {
+        width: 35px !important;
+        height: 35px !important;
+        margin: 10px !important;
+    }
+}
+
+@media only screen and (max-height: 480px) {
+    canvas {
+        width: 100vh !important;
+        margin-top: 50px !important;
+    }
+
+    .panel-frame,
+    .button-panel-main {
+        width: 100vh !important;
+    }
+
+    .hud-button {
+        width: 30px !important;
+        height: 30px !important;
+        margin: 5px !important;
+    }
+
+    h1 {
+        display: none !important;
+    }
+
+    .retry-button,
+    .restart-button {
+        margin-top: 50px !important;
+    }
+
+    .win-screen {
+        background-image: url('img/9_intro_outro_screens/win/win_1.png');
+        background-size: contain !important;
+    }
+}
+
+h1 {
+    font-family: 'Oi-Regular', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 46px;
+    color: rgb(255, 245, 181);
+    text-shadow: 4px 4px black;
+}
+
+.start-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('img/9_intro_outro_screens/start/startscreen_1.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 10;
+}
+
+.game-over-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('img/9_intro_outro_screens/game_over/game over!.png');
+    background-size: cover;
+    background-position: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 10;
+}
+
+.win-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('img/9_intro_outro_screens/win/win_1.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 10;
+}
+
+.start-button,
+.how-to-play,
+.impressum-btn {
+    margin-top: 50px;
+    font-size: 24px;
+    color: white;
+    text-shadow: 1px 1px black;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.retry-button {
+    display: none;
+    margin-top: 150px;
+    font-size: 24px;
+    color: white;
+    text-shadow: 1px 1px black;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.home-button {
+    margin-top: 30px !important;
+}
+
+.restart-button {
+    display: none;
+    margin-top: 150px;
+    font-size: 24px;
+    color: white;
+    text-shadow: 1px 1px black;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.start-button:hover,
+.retry-button:hover,
+.restart-button:hover,
+.home-button:hover,
+.how-to-play:hover,
+.impressum-btn:hover {
+    background-color: #ffaa00;
+    scale: 125%;
+}
+
+.panel-frame {
+    width: 720px;
+}
+
+.button-panel-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hud-button {
+    width: 40px;
+    height: 40px;
+    margin: 15px;
+    padding: 5px;
+    border: 3px solid black;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.how-to-play-div {
+    width: 300px;
+    height: 200px;
+    border: 3px solid #ffaa00;
+    border-radius: 10px;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 3px 3px 10px 0px #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog-bg {
+    background-color: rgba(0, 0, 0, 0.26);
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.impressum {
+    width: 600px;
+    height: 600px;
+    border: 3px solid #ffaa00;
+    border-radius: 10px;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 3px 3px 10px 0px #000000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.impressum-bg {
+    background-color: rgba(0, 0, 0, 0.26);
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-none {
+    display: none;
+}

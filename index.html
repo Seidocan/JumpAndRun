@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html translate="no" lang="DE">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/x-icon" href="img/favicon/favicon.webp">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="js/script.js"></script>
+    <script src="classes/drawable-object.class.js"></script>
+    <script src="classes/movable-object.class.js"></script>
+    <script src="classes/character.class.js"></script>
+    <script src="classes/chicken.class.js"></script>
+    <script src="classes/chick.class.js"></script>
+    <script src="classes/coin.class.js"></script>
+    <script src="classes/bottle.class.js"></script>
+    <script src="classes/clouds.class.js"></script>
+    <script src="classes/status-bar.class.js"></script>
+    <script src="classes/coin-bar.class.js"></script>
+    <script src="classes/bottle-bar.class.js"></script>
+    <script src="classes/boss-bar.class.js"></script>
+    <script src="classes/world.class.js"></script>
+    <script src="classes/background.class.js"></script>
+    <script src="classes/keyboard.class.js"></script>
+    <script src="classes/level.class.js"></script>
+    <script src="classes/throwable.class.js"></script>
+    <script src="classes/endboss.class.js"></script>
+    <script src="levels/level1.js"></script>
+    <script src="js/game.js"></script>
+
+    <title>El Pollo Loco</title>
+
+</head>
+
+<body>
+
+    <div class="start-screen" id="start-screen">
+
+        <div class="homescreen-buttons">
+            <button class="start-button" onclick="startGame()">Start Game</button>
+            <button class="how-to-play" onclick="showDialog()">How to play</button>
+            <button class="impressum-btn" onclick="showImpressum()">Impressum</button>
+        </div>
+
+        <div class="dialog-bg d-none" id="dialog" onclick="hideDialog()">
+            <div class="how-to-play-div" id="how-to-play-div">
+                Left Arrow = Move Left <br>
+                Right Arrow = Move right <br>
+                Space = jump <br>
+                B = throw bottle <br>
+                S = toggle Sound on / off <br>
+                F = toggle Fullscreen
+            </div>
+        </div>
+
+        <div class="impressum-bg d-none" id="imp-dialog" onclick="hideImpressum()">
+            <div class="impressum" id="impressum-div">
+                <h2>Impressum</h2>
+                <p>Diensteanbieter</p>
+                <p>Marco Marrocu</p>
+                <p>Luisenstraße 31</p>
+                <p>51377 Leverkusen</p>
+
+                Kontaktmöglichkeiten
+                <p>E-Mail-Adresse: <a href="mailto:marco.marrocu@hotmail.de">marco.marrocu@hotmail.de</a></p>
+                <p>Telefon: 015730879625</p>
+
+                Haftungs- und Schutzrechtshinweise
+                Bildnachweise
+                <p>Bildquellen und Urheberrechtshinweise: </p>
+                <p><a href="https://pixabay.com/de/" target="_blank">https://pixabay.com/de/</a></p>
+
+                <p class="seal"><a href="https://datenschutz-generator.de/"
+                        title="Rechtstext von Dr. Schwenke - für weitere Informationen bitte anklicken." target="_blank"
+                        rel="noopener noreferrer nofollow">Erstellt mit kostenlosem Datenschutz-Generator.de von Dr.
+                        Thomas Schwenke</a></p>
+            </div>
+        </div>
+
+    </div>
+
+    <h1>El pollo loco</h1>
+
+    <canvas id="canvas" width="720" height="480"></canvas>
+
+    <div class="panel-frame" id="panel-frame">
+        <div class="button-panel-main" id="button-panel-main">
+            <div class="move-buttons">
+                <img class="hud-button" id="button-left" src="img/hud_icons/left.png">
+                <img class="hud-button" id="button-right" src="img/hud_icons/right.png">
+            </div>
+            <div class="jump-throw-buttons">
+                <img class="hud-button" id="button-jump" src="img/hud_icons/up.png">
+                <img class="hud-button" id="button-throw" src="img/hud_icons/throw.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="game-over-screen" id="game-over-screen">
+        <button class="retry-button" id="retry-button" onclick="retryGame()">Retry</button>
+    </div>
+
+    <div class="win-screen" id="win-screen">
+        <button class="restart-button" id="restart-button" onclick="retryGame()">Restart</button>
+    </div>
+
+</body>
+
+</html>
