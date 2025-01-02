@@ -8,9 +8,9 @@ body {
     flex-direction: column;
     align-items: center;
     background-image: url(img/5_background/mybg.webp);
-    height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
+    height: 98vh;
 }
 
 .homescreen-buttons {
@@ -281,16 +281,35 @@ h1 {
 }
 
 .rotate {
-    margin-top: 100px;
+    margin-top: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg) translateX(0);
+    }
+    25% {
+        transform: rotate(-45deg) translateX(-10px);
+    }
+    50% {
+        transform: rotate(-90deg) translateX(0);
+    }
+    75% {
+        transform: rotate(-45deg) translateX(10px);
+    }
+    100% {
+        transform: rotate(0deg) translateX(0);
+    }
+}
+
 .rotate-img {
-    height: 50vh;
-    width: 70%;
+    height: 30vh;
+    width: 50%;
+    animation: rotate 5s ease-in-out infinite;
 }
 
 .rotateTxT{
