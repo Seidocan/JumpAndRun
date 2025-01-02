@@ -36,49 +36,6 @@ class DrawableObject {
     }
 
     /**
-     * Draws the object's original and adjusted hitboxes on the canvas for debugging purposes.
-     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
-     */
-/*
-    drawFrame(ctx) {
-        if (
-            this instanceof Throwableobject ||
-            this instanceof Chick ||
-            this instanceof Chicken ||
-            this instanceof Endboss ||
-            this instanceof Coin ||
-            this instanceof Character ||
-            this instanceof Bottle
-        ) {
-            ctx.beginPath();
-            ctx.lineWidth = '6';
-            ctx.strokeStyle = 'yellow';
-            ctx.rect(this.x, this.y, this.width, this.height);      // zeigt die original "hitboxen" an (gelbe umrandung)
-            ctx.stroke()
-        }
-        if (this instanceof Throwableobject ||
-            this instanceof Chick ||
-            this instanceof Chicken ||
-            this instanceof Endboss ||
-            this instanceof Coin ||
-            this instanceof Character ||
-            this instanceof Bottle
-        ) {
-            ctx.beginPath();
-            ctx.lineWidth = '3';
-            ctx.strokeStyle = 'red';
-            ctx.rect(
-                this.x + this.offset.left,
-                this.y + this.offset.top,           //Zeigt die neuen "hitboxen" an (rote umrandung)
-                this.width - this.offset.left - this.offset.right,
-                this.height - this.offset.top - this.offset.bottom
-            );
-            ctx.stroke();
-        }
-    }
-*/
-
-    /**
      * Loads an array of images into the `imageCache` object.
      * @param {string[]} arr - Array of image paths to load.
      */
