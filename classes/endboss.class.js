@@ -136,9 +136,12 @@ class Endboss extends MovableObject {
      * Handles the boss's state when its energy reaches zero, playing the win animation and marking it as dead.
      */
     bossDown() {
-        if (this.bossEnergy <= 0) {
+        if (this.bossEnergy <= 0 && !this.isDead) {
             this.isDead = true;
             this.playAnimation(this.IMAGES_WIN);
+            setTimeout(() => {
+                this.img = this.imageCache[this.IMAGES_WIN[this.IMAGES_WIN.length - 1]];
+            }, this.IMAGES_WIN.length * 300);
         }
     }
 }

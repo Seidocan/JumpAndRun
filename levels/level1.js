@@ -5,12 +5,12 @@ function initLevel() {
     level1 = new Level(
 
         [
-            new Chicken('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png', 450),
-            new Chicken('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png', 850),
+            new Chicken('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png', 300),
+            new Chicken('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png', 1000),
             new Chicken('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png', 1200),
-            new Chick('img/3_enemies_chicken/chicken_small/1_walk/1_w.png', 750),
-            new Chick('img/3_enemies_chicken/chicken_small/1_walk/1_w.png', 1150),
+            new Chick('img/3_enemies_chicken/chicken_small/1_walk/1_w.png', 500),
             new Chick('img/3_enemies_chicken/chicken_small/1_walk/1_w.png', 1500),
+            new Chick('img/3_enemies_chicken/chicken_small/1_walk/1_w.png', 1800),
             new Endboss('img/4_enemie_boss_chicken/2_alert/G5.png'),
         ],
 

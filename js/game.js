@@ -7,7 +7,8 @@ let sounds = {
     walking_sound: new Audio('audio/steps.mp3'),
     jump_sound: new Audio('audio/jump.mp3'),
     idle_sound: new Audio('audio/longidle.mp3'),
-    chicken_perma_sound: new Audio('audio/chicken.mp3'),
+    chicken: new Audio('audio/chicken.mp3'),
+    chick: new Audio('audio/chick.mp3'),
     hurt: new Audio('audio/hurt.mp3'),
     coin: new Audio('audio/piccoin.mp3'),
     bottle: new Audio('audio/picbottle.mp3'),
@@ -21,8 +22,9 @@ let sounds = {
 }
 
 sounds.music.volume = 0.02;
-sounds.chicken_perma_sound.volume = 0.15;
+sounds.chicken.volume = 0.2;
 sounds.bottle.volume = 0.25;
+sounds.chick.volume = 0.15;
 
 /**
  * Initializes the game by setting up the canvas and the game world.

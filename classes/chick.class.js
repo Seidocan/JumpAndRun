@@ -41,7 +41,10 @@ class Chick extends MovableObject {
             this.moveLeft();
         }, 1000 / 60);
         setInterval(() => {
+            if (!this.isDead){
             this.playAnimation(this.IMAGES_CHICK_WALKING);
+            playSound('chick');
+            }
             if (this.hitByBottle) {
                 this.loadImage(this.IMAGES_CHICK_DEAD);
                 setTimeout(() => {

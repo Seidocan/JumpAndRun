@@ -40,8 +40,10 @@ class Chicken extends MovableObject {
             this.moveLeft();
         }, 1000 / 60);
         setInterval(() => {
+            if (!this.isDead){
             this.playAnimation(this.IMAGES_CHICKEN_WALKING);
-            playSound('chicken_perma_sound');
+            playSound('chicken');
+            }
             if (this.hitByBottle) {
                 this.loadImage(this.IMAGES_CHICKEN_DEAD);
                 setTimeout(() => {
