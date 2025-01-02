@@ -21,7 +21,7 @@ class Chick extends MovableObject {
         super().loadImage(imagePath);
         this.loadImages(this.IMAGES_CHICK_WALKING);
         this.loadImage(this.IMAGES_CHICK_DEAD);
-        this.speed = 0.30 + Math.random() * 0.25;
+        this.speed = 0.60 + Math.random() * 0.25;
         this.x = x + Math.random() * 1000;
         this.y = 370;
         this.offset = {
