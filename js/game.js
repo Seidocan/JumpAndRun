@@ -24,7 +24,6 @@ sounds.music.volume = 0.02;
 sounds.chicken_perma_sound.volume = 0.15;
 sounds.bottle.volume = 0.25;
 
-
 /**
  * Initializes the game by setting up the canvas and the game world.
  */
@@ -130,6 +129,40 @@ function clearTimeouts() {
     }
 }
 
+window.addEventListener('resize', handleOrientationChange);
+window.addEventListener('orientationchange', handleOrientationChange);
+document.addEventListener('DOMContentLoaded', handleOrientationChange);
+
+/**
+ * Handles the orientation change event and adjusts the visibility of various elements on the page.
+ */
+function handleOrientationChange() {
+    const rotateDiv = document.getElementById('rotate'); 
+    let canvas = document.getElementById('canvas-div');
+    let winScreen = document.getElementById('win-div');  
+    let gameOverScreen = document.getElementById('game-over-div');
+    let panelFrame = document.getElementById('panel-div');
+    let startScreen = document.getElementById('start-screen');
+    let canvasDiv = document.getElementById('canvas-div');
+
+    if (window.innerWidth > window.innerHeight) {
+        rotateDiv.classList.add('d-none');
+        canvas.classList.remove('d-none');
+        winScreen.classList.remove('d-none');
+        gameOverScreen.classList.remove('d-none')
+        panelFrame.classList.remove('d-None');
+        startScreen.classList.remove('d-none');
+        canvasDiv.classList.remove('d-none');
+    } else {
+        rotateDiv.classList.remove('d-none');
+        canvas.classList.add('d-none');
+        winScreen.classList.add('d-none');
+        gameOverScreen.classList.add('d-none')
+        panelFrame.classList.add('d-None');
+        startScreen.classList.add('d-none');
+        canvasDiv.classList.add('d-none');
+    }
+}
 
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) {
@@ -194,7 +227,6 @@ window.addEventListener("keyup", (event) => {
     }
 });
 
-
 window.addEventListener("touchstart", (event) => {
     if (event.target.id === 'button-right') {
         event.preventDefault();
@@ -213,7 +245,6 @@ window.addEventListener("touchstart", (event) => {
         keyboard.B = true;
     }
 });
-
 
 window.addEventListener("touchend", (event) => {
     if (event.target.id === 'button-right') {

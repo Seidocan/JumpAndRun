@@ -21,7 +21,6 @@ class BottleBar extends DrawableObject {
         this.setBottleAmmount(0);
     }
 
-
     /**
      * Sets the bottle amount and updates the displayed image accordingly.
      * The bottle amount is clamped between 0 and 10.
@@ -34,7 +33,6 @@ class BottleBar extends DrawableObject {
         this.img = this.imageCache[path];
     }
 
-    
     /**
      * Resolves the image index to be used based on the bottle amount.
      * @returns {number} The index of the image in the IMAGES_BOTTLEBAR array.

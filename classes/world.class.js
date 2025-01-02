@@ -76,35 +76,79 @@ class World {
         });
     }
 
-
+    /**
+     * Periodically checks if throwable objects (bottles) collide with any enemies.
+     */
     checkBottleHit() {
         setInterval(() => {
             this.throwableObjects.forEach((bottle, index) => {
                 this.level.enemies.forEach((enemy, indexOfEnemy) => {
-                    if (bottle.isColliding(enemy) && !enemy.isDead) {
+                    if (this.isCollision(bottle, enemy)) {
                         if (enemy instanceof Chick || enemy instanceof Chicken) {
-                            enemy.isDead = true;
-                            playSound('hit_enemy');
-                            bottle.isSplashed = true;
-                            bottle.splashAnimation();
-                            enemy.enemyHit();
-                            setTimeout(() => {
-                                this.level.enemies.splice(indexOfEnemy, 1);
-                                this.throwableObjects.splice(index, 1);
-                            }, 1000);
+                            this.handleChickenHit(enemy, bottle, index, indexOfEnemy);
                         } else if (enemy instanceof Endboss) {
-                            bottle.isSplashed = true;
-                            playSound('boss_hit');
-                            bottle.splashAnimation();
-                            playSound('hit_enemy');
-                            enemy.bossHit();
-                            this.bossBar.setBossPercentage(enemy.bossEnergy);
-                            this.throwableObjects.splice(index, 1);
+                            this.handleEndbossHit(enemy, bottle, index);
                         }
                     }
                 });
-            }, 500);
-        });
+            });
+        }, 500);
+    }
+
+    /**
+     * Checks whether a bottle has collided with an enemy and if the enemy is not already dead.
+     * @param {Object} bottle - The throwable object being checked for collision.
+     * @param {Object} enemy - The enemy being checked for collision.
+     * @returns {boolean} True if the bottle collides with the enemy and the enemy is not dead.
+     */
+    isCollision(bottle, enemy) {
+        return bottle.isColliding(enemy) && !enemy.isDead;
+    }
+
+    /**
+     * Handles the collision logic when a bottle hits a chicken enemy.
+     * Marks the enemy as dead, plays the hit sound, triggers splash animation, and removes the enemy and bottle after a delay.
+     * @param {Object} enemy - The chicken enemy being hit.
+     * @param {Object} bottle - The throwable object that hit the enemy.
+     * @param {number} index - The index of the bottle array.
+     * @param {number} indexOfEnemy - The index of the enemy array.
+     */
+    handleChickenHit(enemy, bottle, index, indexOfEnemy) {
+        enemy.isDead = true;
+        playSound('hit_enemy');
+        bottle.isSplashed = true;
+        bottle.splashAnimation();
+        enemy.enemyHit();
+        this.removeEnemyAndBottle(indexOfEnemy, index);
+    }
+
+    /**
+     * Handles the collision logic when a bottle hits the endboss.
+     * Triggers splash animation, reduces the boss's energy, and removes the bottle.
+     * @param {Object} enemy - The endboss being hit.
+     * @param {Object} bottle - The bottle that hit the boss.
+     * @param {number} index - The index of the bottle in the array.
+     */
+    handleEndbossHit(enemy, bottle, index) {
+        bottle.isSplashed = true;
+        playSound('boss_hit');
+        bottle.splashAnimation();
+        playSound('hit_enemy');
+        enemy.bossHit();
+        this.bossBar.setBossPercentage(enemy.bossEnergy);
+        this.throwableObjects.splice(index, 1);
+    }
+
+    /**
+     * Removes a chicken enemy and the bottle from the arrays.
+     * @param {number} indexOfEnemy - The index of the enemy in the array.
+     * @param {number} index - The index of the bottle in the array.
+     */
+    removeEnemyAndBottle(indexOfEnemy, index) {
+        setTimeout(() => {
+            this.level.enemies.splice(indexOfEnemy, 1);
+            this.throwableObjects.splice(index, 1);
+        }, 1000);
     }
 
     /**

@@ -90,7 +90,6 @@ class Character extends MovableObject {
         this.noActivity();
     }
 
-
     /**
      * Initializes the no-activity detection by listening for keydown events and resetting the idle timer.
      */
@@ -116,7 +115,6 @@ class Character extends MovableObject {
         this.sleepTimeout = setTimeout(() => this.onSleep(), 10000);
     }
 
-
     /**
      * Called when the entity becomes idle. Starts the idle animation if energy is greater than 0.
      */
@@ -125,7 +123,6 @@ class Character extends MovableObject {
             this.startIdleAnimation();
         }
     }
-
 
     /**
      * Called when the entity transitions into sleep. Plays a sound and starts the sleep animation if energy is greater than 0.
@@ -147,7 +144,6 @@ class Character extends MovableObject {
         }, 500);
     }
 
-
     /**
      * Starts the sleep animation, clearing any existing animations.
      */
@@ -168,8 +164,21 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Calls functions to handle character animations, movements, and jumping.
+     */
+    animate() {
+        this.characterAnimations();
+        this.characterMovesRight();
+        this.characterMovesLevt();
+        this.characterJumps();
+    }
 
-    animate() {     // muss gekürzt werden
+    /**
+     * Controls the character's movement to the right.
+     * Updates the camera position based on the character's x position.
+     */
+    characterMovesRight() {
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
@@ -178,6 +187,16 @@ class Character extends MovableObject {
                 playSound('walking_sound');
                 this.resetIdleTimer();
             }
+            this.world.cam_x = -this.x + 100;
+        }, 1000 / 60);
+    }
+
+    /**
+     * Controls the character's movement to the left.
+     * Updates the camera position based on the character's x position.
+     */
+    characterMovesLevt() {
+        setInterval(() => {
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
@@ -185,6 +204,15 @@ class Character extends MovableObject {
                 playSound('walking_sound');
                 this.resetIdleTimer();
             }
+            this.world.cam_x = -this.x + 100;
+        }, 1000 / 60);
+    }
+
+    /**
+     * Controls the character's jumping action.
+     */
+    characterJumps() {
+        setInterval(() => {
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
                 playSound('jump_sound');
@@ -192,6 +220,12 @@ class Character extends MovableObject {
             }
             this.world.cam_x = -this.x + 100;
         }, 1000 / 60);
+    }
+
+    /**
+     * Determines which animation to play depending on whether the character is dead, hurt, jumping, or walking.
+     */
+    characterAnimations() {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);

@@ -189,7 +189,7 @@ class MovableObject extends DrawableObject {
      */
     gameOver() {
         document.getElementById('canvas').style.display = 'none';
-        document.getElementById('panel-frame').style.display = 'none';
+        document.getElementById('panel-div').style.display = 'none';
         document.getElementById('game-over-screen').style.display = 'flex';
         document.getElementById('retry-button').style.display = 'block';
         muteSounds();
@@ -201,7 +201,7 @@ class MovableObject extends DrawableObject {
      */
     win() {
         document.getElementById('canvas').style.display = 'none';
-        document.getElementById('panel-frame').style.display = 'none';
+        document.getElementById('panel-div').style.display = 'none';
         document.getElementById('win-screen').style.display = 'flex';
         document.getElementById('restart-button').style.display = 'block';
         muteSounds();

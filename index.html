@@ -84,27 +84,40 @@
 
     <h1>El pollo loco</h1>
 
-    <canvas id="canvas" width="720" height="480"></canvas>
+    <div id="canvas-div" class="canvas-div d-done">
+        <canvas id="canvas" width="720" height="480"></canvas>
+    </div>
 
-    <div class="panel-frame" id="panel-frame">
-        <div class="button-panel-main" id="button-panel-main">
-            <div class="move-buttons">
-                <img class="hud-button" id="button-left" src="img/hud_icons/left.png">
-                <img class="hud-button" id="button-right" src="img/hud_icons/right.png">
-            </div>
-            <div class="jump-throw-buttons">
-                <img class="hud-button" id="button-jump" src="img/hud_icons/up.png">
-                <img class="hud-button" id="button-throw" src="img/hud_icons/throw.png">
+    <div id="rotate" class="rotate d-none">
+        <img class="rotate-img" src="img/hud_icons/device-rotate.png">
+        <h2 class="rotateTxT">Rotate youre Device!</h2>
+    </div>
+
+    <div id="panel-div" class="panel-div d-none">
+        <div class="panel-frame" id="panel-frame">
+            <div class="button-panel-main" id="button-panel-main">
+                <div class="move-buttons">
+                    <img class="hud-button" id="button-left" src="img/hud_icons/left.png">
+                    <img class="hud-button" id="button-right" src="img/hud_icons/right.png">
+                </div>
+                <div class="jump-throw-buttons">
+                    <img class="hud-button" id="button-jump" src="img/hud_icons/up.png">
+                    <img class="hud-button" id="button-throw" src="img/hud_icons/throw.png">
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="game-over-screen" id="game-over-screen">
-        <button class="retry-button" id="retry-button" onclick="retryGame()">Retry</button>
+    <div id="game-over-div" class="game-over-div d-done">
+        <div class="game-over-screen" id="game-over-screen">
+            <button class="retry-button" id="retry-button" onclick="retryGame()">Retry</button>
+        </div>
     </div>
 
-    <div class="win-screen" id="win-screen">
-        <button class="restart-button" id="restart-button" onclick="retryGame()">Restart</button>
+    <div id="win-div" class="win-div d-done">
+        <div class="win-screen" id="win-screen">
+            <button class="restart-button" id="restart-button" onclick="retryGame()">Restart</button>
+        </div>
     </div>
 
 </body>

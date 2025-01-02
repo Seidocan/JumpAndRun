@@ -21,7 +21,6 @@ class BossBar extends DrawableObject {
         this.height = 45;
     }
 
-    
     /**
      * Sets the boss's health percentage and updates the displayed image.
      * @param {number} bossPercentage - The boss's health percentage (0-100).
@@ -32,7 +31,6 @@ class BossBar extends DrawableObject {
         this.img = this.imageCache[path];
     }
 
-    
     /**
      * Determines the image index to be used based on the boss's health percentage.
      * @returns {number} The index of the image in the IMAGES_BOSSBAR array.

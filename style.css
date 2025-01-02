@@ -8,6 +8,7 @@ body {
     flex-direction: column;
     align-items: center;
     background-image: url(img/5_background/mybg.webp);
+    height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -73,6 +74,10 @@ canvas {
     .retry-button,
     .restart-button {
         margin-top: 50px !important;
+    }
+
+    .homescreen-buttons {
+        margin-top: 5px;
     }
 
     .win-screen {
@@ -273,6 +278,27 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.rotate {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.rotate-img {
+    height: 50vh;
+    width: 70%;
+}
+
+.rotateTxT{
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    color: white;
+    text-shadow: 1px 1px black;
 }
 
 .d-none {
