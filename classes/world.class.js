@@ -28,12 +28,16 @@ class World {
         playSound('music');
     }
 
-
+    /**
+     * Sets the world for the character, linking the character to the world instance.
+     */
     setWorld() {
         this.character.world = this;
     }
 
-
+    /**
+     * Runs the game logic at regular intervals, checking for collisions, throwing bottles, and handling coin and energy interactions.
+     */
     run() {
         setInterval(() => {
             this.checkCollisions();
@@ -46,7 +50,9 @@ class World {
         }, 200);
     }
 
-
+    /**
+     * Checks if the character is attempting to throw a bottle and handles the throwing logic.
+     */
     checkThrow() {
         if (this.keyboard.B && this.bottleToThrow > 0) {
             let bottle = new Throwableobject(this.character.x + 80, this.character.y + 140);
@@ -58,7 +64,9 @@ class World {
         }
     }
 
-
+    /**
+     * Checks for collisions between the character and enemies, applying damage if necessary.
+     */
     checkCollisions() {
         this.level.enemies.forEach((enemy, Endboss) => {
             if (this.character.isColliding(enemy, Endboss) && !enemy.isDead) {
@@ -99,21 +107,28 @@ class World {
         });
     }
 
-    stompEnemy(){
+    /**
+     * Checks if the character collides with any enemy while jumping and applies a stomp effect.
+     */
+    stompEnemy() {
         setInterval(() => {
             this.level.enemies.forEach((enemy, indexOfEnemy) => {
-                if(this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead){
+                if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead) {
                     enemy.isDead = true;
-                    playSound('stomp'); 
-                    enemy.enemyHit();  
+                    playSound('stomp');
+                    enemy.enemyHit();
                     setTimeout(() => {
-                    this.level.enemies.splice(indexOfEnemy, 1);
-                    }, 1000);    
+                        this.level.enemies.splice(indexOfEnemy, 1);
+                    }, 1000);
                 }
             }
-        )}, 50);
+            )
+        }, 50);
     }
 
+    /**
+     * Checks if the character collects coins and updates the coin count.
+     */
     checkConnectCoins() {
         setInterval(() => {
             this.level.coin.forEach((coin, i) => {
@@ -126,6 +141,9 @@ class World {
         }, 250);
     }
 
+    /**
+     * Checks if the character collects bottles and updates the bottle count.
+     */
     checkConnectBottles() {
         setInterval(() => {
             this.level.bottle.forEach((bottle, i) => {
@@ -143,6 +161,9 @@ class World {
         }, 100);
     }
 
+    /**
+     * Clears the canvas and redraws all game objects, updating the view.
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.cam_x, 0);
@@ -166,12 +187,20 @@ class World {
         });
     }
 
+    /**
+     * Adds multiple objects to the map for rendering.
+     * @param {Array} objects - An array of objects to add to the map.
+     */
     addobjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         });
     }
 
+    /**
+     * Adds a single object to the map for rendering.
+     * @param {Object} mo - The object to add to the map.
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
@@ -183,6 +212,10 @@ class World {
         }
     }
 
+    /**
+     * Flips an image horizontally for objects facing the opposite direction.
+     * @param {Object} mo - The object to flip.
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -190,6 +223,10 @@ class World {
         mo.x = mo.x * -1;
     }
 
+    /**
+     * Reverts the image flip back to the normal orientation.
+     * @param {Object} mo - The object to revert.
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();

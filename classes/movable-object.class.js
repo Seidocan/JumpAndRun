@@ -82,7 +82,7 @@ class MovableObject extends DrawableObject {
             playSound('win');
             setTimeout(() => {
                 this.win();
-            }, 2700);
+            }, 2800);
         } if (this.bossEnergy < 0) {
             this.bossEnergy = 0;
         } else {

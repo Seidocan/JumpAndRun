@@ -4,15 +4,6 @@ class Throwableobject extends MovableObject {
     height = 60;
     isSplashed = false;
 
-    constructor(x, y) {
-        super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
-        this.loadImages(this.IMAGES_THROWN);
-        this.loadImages(this.IMAGES_SPLASH);
-        this.x = x;
-        this.y = y;
-        this.throw();
-    }
-
     IMAGES_THROWN = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -29,15 +20,27 @@ class Throwableobject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
 
+    constructor(x, y) {
+        super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
+        this.loadImages(this.IMAGES_THROWN);
+        this.loadImages(this.IMAGES_SPLASH);
+        this.x = x;
+        this.y = y;
+        this.throw();
+    }
 
+    /**
+     * Throws the object with an initial vertical speed and applies gravity.
+     * Plays a throw sound and moves the object horizontally while it is in the air.
+     */
     throw() {
         this.speedY = 25;
         this.applyGravity();
         playSound('throw_sound');
         setInterval(() => {
-            if(!this.isSplashed){
-            this.x += 28;
-            this.playAnimation(this.IMAGES_THROWN);
+            if (!this.isSplashed) {
+                this.x += 28;
+                this.playAnimation(this.IMAGES_THROWN);
             } else {
                 this.speedY = 0;
                 this.speedY = 0;
@@ -46,10 +49,12 @@ class Throwableobject extends MovableObject {
         }, 60);
     }
 
-
+    /**
+     * Starts the splash animation by cycling through the splash images.
+     */
     splashAnimation() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_SPLASH);
-        },200);
+        }, 200);
     }
 }
