@@ -99,7 +99,10 @@ class Character extends MovableObject {
         this.resetIdleTimer();
     }
 
-
+    /**
+     * Resets the idle timer, clearing any existing timeouts or intervals and restarting the timers
+     * for idle and sleep states.
+     */
     resetIdleTimer() {
         if (this.idleTimeout)
             clearTimeout(this.idleTimeout);
@@ -189,8 +192,6 @@ class Character extends MovableObject {
             }
             this.world.cam_x = -this.x + 100;
         }, 1000 / 60);
-
-
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);

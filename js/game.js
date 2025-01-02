@@ -25,12 +25,18 @@ sounds.chicken_perma_sound.volume = 0.15;
 sounds.bottle.volume = 0.25;
 
 
+/**
+ * Initializes the game by setting up the canvas and the game world.
+ */
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 }
 
-
+/**
+ * Plays a specific sound if it is paused. Restarts the sound from the beginning.
+ * @param {string} sound - The name of the sound to be played.
+ */
 function playSound(sound) {
     const audio = sounds[sound];
     if (audio && audio.paused) {
@@ -41,7 +47,10 @@ function playSound(sound) {
     }
 }
 
-
+/**
+ * Pauses a specific sound if it is currently playing.
+ * @param {string} sound - The name of the sound to be paused.
+ */
 function pauseSound(sound) {
     const audio = sounds[sound];
     if (audio && !audio.paused) {
@@ -49,7 +58,9 @@ function pauseSound(sound) {
     }
 }
 
-
+/**
+ * Toggles fullscreen mode for the canvas element.
+ */
 function toggleFullscreen() {
     const canvas = document.getElementById('canvas');
     if (!document.fullscreenElement) {
@@ -59,7 +70,9 @@ function toggleFullscreen() {
     }
 }
 
-
+/**
+ * Toggles the mute state for all game sounds.
+ */
 function toggleMuteSounds() {
     if (soundsMuted) {
         unmuteSounds();
@@ -69,21 +82,27 @@ function toggleMuteSounds() {
     soundsMuted = !soundsMuted;
 }
 
-
+/**
+ * Mutes all game sounds.
+ */
 function muteSounds() {
     for (let soundName in sounds) {
         sounds[soundName].muted = true;
     }
 }
 
-
+/**
+ * Unmutes all game sounds.
+ */
 function unmuteSounds() {
     for (let soundName in sounds) {
         sounds[soundName].muted = false;
     }
 }
 
-
+/**
+ * Stops all game activities, including intervals, timeouts, and resets the game world.
+ */
 function stopAll() {
     clearIntervals();
     clearTimeouts();
@@ -91,7 +110,9 @@ function stopAll() {
     keyboard = new Keyboard();
 }
 
-
+/**
+ * Clears all active intervals in the game.
+ */
 function clearIntervals() {
     let id = setInterval(() => { }, 0);
     while (id--) {
@@ -99,7 +120,9 @@ function clearIntervals() {
     }
 }
 
-
+/**
+ * Clears all active timeouts in the game.
+ */
 function clearTimeouts() {
     let id = setTimeout(() => { }, 0);
     while (id--) {

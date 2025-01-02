@@ -37,10 +37,11 @@ class Chicken extends MovableObject {
      */
     animate() {
         setInterval(() => {
-             this.moveLeft();
-         }, 1000 / 60);
+            this.moveLeft();
+        }, 1000 / 60);
         setInterval(() => {
             this.playAnimation(this.IMAGES_CHICKEN_WALKING);
+            playSound('chicken_perma_sound');
             if (this.hitByBottle) {
                 this.loadImage(this.IMAGES_CHICKEN_DEAD);
                 setTimeout(() => {
@@ -48,9 +49,5 @@ class Chicken extends MovableObject {
                 }, 2200);
             }
         }, 200);
-        if (!sounds.chicken_perma_sound.playing) {
-            sounds.chicken_perma_sound.loop = true;
-            sounds.chicken_perma_sound.play();
-        }
     }
 }
