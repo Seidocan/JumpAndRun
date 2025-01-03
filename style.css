@@ -34,7 +34,7 @@ canvas {
         width: 100% !important;
     }
 
-    .panel-frame,
+    .panel-div,
     .button-panel-main {
         width: 100% !important;
     }
@@ -56,7 +56,7 @@ canvas {
         margin-top: 50px !important;
     }
 
-    .panel-frame,
+    .panel-div,
     .button-panel-main {
         width: 100vh !important;
     }
@@ -200,7 +200,7 @@ h1 {
     scale: 125%;
 }
 
-.panel-frame {
+.panel-div {
     width: 720px;
 }
 
