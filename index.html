@@ -97,16 +97,16 @@
     <div id="panel-div" class="panel-div d-none">
         <div class="panel-frame" id="panel-frame">
             <div class="button-panel-main" id="button-panel-main">
-                <div class="move-buttons">
+                <div class="move-buttons hide-mobile">
                     <img class="hud-button" id="button-left" src="img/hud_icons/left.png">
                     <img class="hud-button" id="button-right" src="img/hud_icons/right.png">
                 </div>
 
                 <div  id="toggle-sound-btn">
-                    <img class="hud-button" id="toggle-sounds" src="img/hud_icons/soundOn.png">
+                    <img class="hud-button" id="toggle-sounds" src="img/hud_icons/soundOn.png" onclick="toggleMuteSounds()">
                 </div>
 
-                <div class="jump-throw-buttons">
+                <div class="jump-throw-buttons hide-mobile">
                     <img class="hud-button" id="button-jump" src="img/hud_icons/up.png">
                     <img class="hud-button" id="button-throw" src="img/hud_icons/throw.png">
                 </div>
@@ -114,7 +114,7 @@
         </div>
     </div>
 
-    <div id="game-over-div" class="game-over-div d-done">
+    <div id="game-over-div" class="game-over-div d-none">
         <div class="game-over-screen" id="game-over-screen">
             <button class="retry-button" id="retry-button" onclick="retryGame()">Retry</button>
         </div>

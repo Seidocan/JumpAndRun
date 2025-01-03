@@ -148,11 +148,12 @@ function handleOrientationChange() {
     let panelFrame = document.getElementById('panel-div');
     let startScreen = document.getElementById('start-screen');
     let canvasDiv = document.getElementById('canvas-div');
+    let muteBtn = document.getElementById('toggle-sound-btn');
 
     if (window.innerWidth > window.innerHeight) {
-        showLandscapeMode(rotateDiv, canvas, winScreen, gameOverScreen, panelFrame, startScreen, canvasDiv);
+        showLandscapeMode(rotateDiv, canvas, winScreen, gameOverScreen, panelFrame, startScreen, canvasDiv, muteBtn);
     } else {
-        showPortraitMode(rotateDiv, canvas, winScreen, gameOverScreen, panelFrame, startScreen, canvasDiv);
+        showPortraitMode(rotateDiv, canvas, winScreen, gameOverScreen, panelFrame, startScreen, canvasDiv, muteBtn);
     }
 }
 
@@ -166,14 +167,15 @@ function handleOrientationChange() {
  * @param {HTMLElement} startScreen - The start screen to show in landscape mode.
  * @param {HTMLElement} canvasDiv - The canvas div to show in landscape mode.
  */
-function showLandscapeMode(rotateDiv, canvas, winScreen, gameOverScreen, panelFrame, startScreen, canvasDiv) {
+function showLandscapeMode(rotateDiv, canvas, winScreen, gameOverScreen, panelFrame, startScreen, canvasDiv, muteBtn) {
     rotateDiv.classList.add('d-none');
     canvas.classList.remove('d-none');
     winScreen.classList.remove('d-none');
     gameOverScreen.classList.remove('d-none');
-    panelFrame.classList.remove('d-none');
+    panelFrame.classList.remove('d-none-i');
     startScreen.classList.remove('d-none');
     canvasDiv.classList.remove('d-none');
+    muteBtn.classList.remove('d-none');
 }
 
 /**
@@ -186,14 +188,15 @@ function showLandscapeMode(rotateDiv, canvas, winScreen, gameOverScreen, panelFr
  * @param {HTMLElement} startScreen - The start screen to hide in portrait mode.
  * @param {HTMLElement} canvasDiv - The canvas div to hide in portrait mode.
  */
-function showPortraitMode(rotateDiv, canvas, winScreen, gameOverScreen, panelFrame, startScreen, canvasDiv) {
+function showPortraitMode(rotateDiv, canvas, winScreen, gameOverScreen, panelFrame, startScreen, canvasDiv, muteBtn) {
     rotateDiv.classList.remove('d-none');
     canvas.classList.add('d-none');
     winScreen.classList.add('d-none');
     gameOverScreen.classList.add('d-none');
-    panelFrame.classList.add('d-none');
+    panelFrame.classList.add('d-none-i');
     startScreen.classList.add('d-none');
     canvasDiv.classList.add('d-none');
+    muteBtn.classList.add('d-none');
 }
 
 /**
@@ -224,6 +227,7 @@ window.addEventListener("keydown", (event) => {
         toggleFullscreen();
     }
     if (event.keyCode == 83) {
+        keyboard.S = true;
         toggleMuteSounds();
     }
     if (event.keyCode == 67) {

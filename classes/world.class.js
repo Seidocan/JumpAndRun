@@ -213,13 +213,13 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.cam_x, 0);
         this.addobjectsToMap(this.level.background);
+        this.addobjectsToMap(this.level.clouds);
         this.ctx.translate(-this.cam_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
         this.addToMap(this.bossBar);
         this.ctx.translate(this.cam_x, 0);
-        this.addobjectsToMap(this.level.clouds);
         this.addobjectsToMap(this.level.enemies);
         this.addobjectsToMap(this.level.coin);
         this.addobjectsToMap(this.level.bottle);

@@ -52,8 +52,8 @@ canvas {
 
 @media only screen and (max-height: 480px) {
     canvas {
-        width: 100vh !important;
-        margin-top: 50px !important;
+        width: 90vw !important;
+        height: 80vh;
     }
 
     .panel-div,
@@ -292,15 +292,19 @@ h1 {
     0% {
         transform: rotate(0deg) translateX(0);
     }
+
     25% {
         transform: rotate(-45deg) translateX(-10px);
     }
+
     50% {
         transform: rotate(-90deg) translateX(0);
     }
+
     75% {
         transform: rotate(-45deg) translateX(10px);
     }
+
     100% {
         transform: rotate(0deg) translateX(0);
     }
@@ -312,7 +316,7 @@ h1 {
     animation: rotate 5s linear infinite;
 }
 
-.rotateTxT{
+.rotateTxT {
     font-weight: 400;
     font-style: normal;
     font-size: 24px;
@@ -322,4 +326,27 @@ h1 {
 
 .d-none {
     display: none;
+}
+
+.d-none-i {
+    display: none !important;
+}
+
+.hide-mobile {
+    display: none;
+}
+
+/* if device has a touch screen */
+@media (any-pointer: coarse) {
+
+    .hide-mobile {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: auto;
+    }
+
+    .panel-div {
+        display: none;
+    }
 }
