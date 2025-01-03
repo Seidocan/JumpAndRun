@@ -30,6 +30,11 @@ class MovableObject extends DrawableObject {
                 this.speedY -= this.acceleration;
             }
         }, 30);
+        setInterval(() => {
+            if(world.character.y > 135) {
+                world.character.y = 135;
+            }
+        }, 200);
     }
 
     /**
@@ -40,7 +45,7 @@ class MovableObject extends DrawableObject {
             if (this instanceof Throwableobject) {
                 return true;
             } else {
-                return this.y < 130;
+                return this.y < 135;
             } 
     }
 

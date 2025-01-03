@@ -139,13 +139,15 @@ class World {
     }
 
     /**
-     * Removes both the enemy and the bottle from their respective arrays.
-     * @param {number} enemyIndex - The index of the enemy to be removed.
-     * @param {number} bottleIndex - The index of the bottle to be removed.
+     * Removes an enemy and a bottle (throwable object) from the game after a short delay.
+     * @param {Object} enemy - The enemy object that should be removed from the level.
+     * @param {number} bottleIndex - The index of the bottle in the `throwableObjects` array that should be removed.
+     * @returns {void}
      */
-    removeEnemyAndBottle(enemyIndex, bottleIndex) {
+    removeEnemyAndBottle(enemy, bottleIndex) {
         setTimeout(() => {
-            this.level.enemies.splice(enemyIndex, 1);
+            const indexOfEnemy = this.level.enemies.indexOf(enemy);
+            this.level.enemies.splice(indexOfEnemy, 1);
             this.throwableObjects.splice(bottleIndex, 1);
         }, 400);
     }
@@ -156,7 +158,7 @@ class World {
     stompEnemy() {
         setInterval(() => {
             this.level.enemies.forEach((enemy, indexOfEnemy) => {
-                if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead && this.character.y <= enemy.y +10) {
+                if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead && this.character.y <= enemy.y + 10) {
                     enemy.isDead = true;
                     playSound('stomp');
                     enemy.enemyHit();
