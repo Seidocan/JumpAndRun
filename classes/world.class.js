@@ -93,7 +93,7 @@ class World {
                             setTimeout(() => {
                                 this.level.enemies.splice(indexOfEnemy, 1);
                                 this.throwableObjects.splice(index, 1);
-                            }, 1000);
+                            }, 600);
                         } else if (enemy instanceof Endboss) {
                             bottle.isSplashed = true;
                             playSound('boss_hit');
@@ -105,7 +105,7 @@ class World {
                         }
                     }
                 });
-            }, 500);
+            }, 50);
         });
     }
 
