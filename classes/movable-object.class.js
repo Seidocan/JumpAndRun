@@ -29,19 +29,19 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
-        }, 1000 / 25);
+        }, 30);
     }
 
     /**
-     * Checks if the object is above the ground level.
+     * Checks if the object is above the ground.
      * @returns {boolean} True if the object is above ground, or if it is a Throwableobject.
      */
     isAboveGround() {
-        if (this instanceof Throwableobject) {
-            return true;
-        } else {
-            return this.y < 130;
-        }
+            if (this instanceof Throwableobject) {
+                return true;
+            } else {
+                return this.y < 130;
+            } 
     }
 
     /**

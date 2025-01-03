@@ -309,7 +309,7 @@ h1 {
 .rotate-img {
     height: 30vh;
     width: 50%;
-    animation: rotate 5s ease-in-out infinite;
+    animation: rotate 5s linear infinite;
 }
 
 .rotateTxT{

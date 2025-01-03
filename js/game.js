@@ -77,8 +77,10 @@ function toggleFullscreen() {
 function toggleMuteSounds() {
     if (soundsMuted) {
         unmuteSounds();
+        document.getElementById('toggle-sounds').src = 'img/hud_icons/soundOn.png';
     } else {
         muteSounds();
+        document.getElementById('toggle-sounds').src = 'img/hud_icons/soundOff.png';
     }
     soundsMuted = !soundsMuted;
 }
@@ -136,36 +138,68 @@ window.addEventListener('orientationchange', handleOrientationChange);
 document.addEventListener('DOMContentLoaded', handleOrientationChange);
 
 /**
- * Handles the orientation change event and adjusts the visibility of various elements on the page.
+ * Handles the change in screen orientation. 
  */
 function handleOrientationChange() {
-    const rotateDiv = document.getElementById('rotate'); 
+    const rotateDiv = document.getElementById('rotate');
     let canvas = document.getElementById('canvas-div');
-    let winScreen = document.getElementById('win-div');  
+    let winScreen = document.getElementById('win-div');
     let gameOverScreen = document.getElementById('game-over-div');
     let panelFrame = document.getElementById('panel-div');
     let startScreen = document.getElementById('start-screen');
     let canvasDiv = document.getElementById('canvas-div');
 
     if (window.innerWidth > window.innerHeight) {
-        rotateDiv.classList.add('d-none');
-        canvas.classList.remove('d-none');
-        winScreen.classList.remove('d-none');
-        gameOverScreen.classList.remove('d-none')
-        panelFrame.classList.remove('d-None');
-        startScreen.classList.remove('d-none');
-        canvasDiv.classList.remove('d-none');
+        showLandscapeMode(rotateDiv, canvas, winScreen, gameOverScreen, panelFrame, startScreen, canvasDiv);
     } else {
-        rotateDiv.classList.remove('d-none');
-        canvas.classList.add('d-none');
-        winScreen.classList.add('d-none');
-        gameOverScreen.classList.add('d-none')
-        panelFrame.classList.add('d-None');
-        startScreen.classList.add('d-none');
-        canvasDiv.classList.add('d-none');
+        showPortraitMode(rotateDiv, canvas, winScreen, gameOverScreen, panelFrame, startScreen, canvasDiv);
     }
 }
 
+/**
+ * Shows the elements in landscape mode (width > height).
+ * @param {HTMLElement} rotateDiv - The element to hide in landscape mode.
+ * @param {HTMLElement} canvas - The canvas element to show in landscape mode.
+ * @param {HTMLElement} winScreen - The win screen to show in landscape mode.
+ * @param {HTMLElement} gameOverScreen - The game over screen to show in landscape mode.
+ * @param {HTMLElement} panelFrame - The panel frame to show in landscape mode.
+ * @param {HTMLElement} startScreen - The start screen to show in landscape mode.
+ * @param {HTMLElement} canvasDiv - The canvas div to show in landscape mode.
+ */
+function showLandscapeMode(rotateDiv, canvas, winScreen, gameOverScreen, panelFrame, startScreen, canvasDiv) {
+    rotateDiv.classList.add('d-none');
+    canvas.classList.remove('d-none');
+    winScreen.classList.remove('d-none');
+    gameOverScreen.classList.remove('d-none');
+    panelFrame.classList.remove('d-none');
+    startScreen.classList.remove('d-none');
+    canvasDiv.classList.remove('d-none');
+}
+
+/**
+ * Shows the elements in portrait mode (height > width).
+ * @param {HTMLElement} rotateDiv - The element to show in portrait mode.
+ * @param {HTMLElement} canvas - The canvas element to hide in portrait mode.
+ * @param {HTMLElement} winScreen - The win screen to hide in portrait mode.
+ * @param {HTMLElement} gameOverScreen - The game over screen to hide in portrait mode.
+ * @param {HTMLElement} panelFrame - The panel frame to hide in portrait mode.
+ * @param {HTMLElement} startScreen - The start screen to hide in portrait mode.
+ * @param {HTMLElement} canvasDiv - The canvas div to hide in portrait mode.
+ */
+function showPortraitMode(rotateDiv, canvas, winScreen, gameOverScreen, panelFrame, startScreen, canvasDiv) {
+    rotateDiv.classList.remove('d-none');
+    canvas.classList.add('d-none');
+    winScreen.classList.add('d-none');
+    gameOverScreen.classList.add('d-none');
+    panelFrame.classList.add('d-none');
+    startScreen.classList.add('d-none');
+    canvasDiv.classList.add('d-none');
+}
+
+/**
+ * Event listener for keyboard input (keydown).
+ * @param {KeyboardEvent} event - The event triggered by the keydown action.
+ */
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) {
         keyboard.RIGHT = true;
@@ -197,6 +231,10 @@ window.addEventListener("keydown", (event) => {
     }
 });
 
+/**
+ * Event listener for keyboard input (keyup).
+ * @param {KeyboardEvent} event - The event triggered by the keyup action.
+ */
 window.addEventListener("keyup", (event) => {
     if (event.keyCode == 39) {
         keyboard.RIGHT = false;
@@ -229,6 +267,10 @@ window.addEventListener("keyup", (event) => {
     }
 });
 
+/**
+ * Event listener for touchstart (when a user touches the screen).
+ * @param {TouchEvent} event - The touchstart event triggered by the user interaction.
+ */
 window.addEventListener("touchstart", (event) => {
     if (event.target.id === 'button-right') {
         event.preventDefault();
@@ -246,8 +288,17 @@ window.addEventListener("touchstart", (event) => {
         event.preventDefault();
         keyboard.B = true;
     }
-});
+    if (event.target.id === 'toggle-sounds') {
+        event.preventDefault();
+        keyboard.S = true;
+        toggleMuteSounds();
+    }
+}, { passive: false });
 
+/**
+ * Event listener for touchend (when a user releases a touch on the screen).
+ * @param {TouchEvent} event - The touchend event triggered by the user interaction.
+ */
 window.addEventListener("touchend", (event) => {
     if (event.target.id === 'button-right') {
         event.preventDefault();
@@ -262,9 +313,16 @@ window.addEventListener("touchend", (event) => {
     if (event.target.id === 'button-jump') {
         event.preventDefault();
         keyboard.SPACE = false;
+        pauseSound('walking_sound');
     }
     if (event.target.id === 'button-throw') {
         event.preventDefault();
         keyboard.B = false;
+        pauseSound('walking_sound');
     }
-});
+    if (event.target.id === 'toggle-sounds') {
+        event.preventDefault();
+        keyboard.S = false;
+
+    }
+}, { passive: false });

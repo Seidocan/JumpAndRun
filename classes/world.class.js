@@ -84,29 +84,70 @@ class World {
             this.throwableObjects.forEach((bottle, index) => {
                 this.level.enemies.forEach((enemy, indexOfEnemy) => {
                     if (bottle.isColliding(enemy) && !enemy.isDead) {
-                        if (enemy instanceof Chick || enemy instanceof Chicken) {
-                            enemy.isDead = true;
-                            playSound('hit_enemy');
-                            bottle.isSplashed = true;
-                            bottle.splashAnimation();
-                            enemy.enemyHit();
-                            setTimeout(() => {
-                                this.level.enemies.splice(indexOfEnemy, 1);
-                                this.throwableObjects.splice(index, 1);
-                            }, 600);
-                        } else if (enemy instanceof Endboss) {
-                            bottle.isSplashed = true;
-                            playSound('boss_hit');
-                            bottle.splashAnimation();
-                            playSound('hit_enemy');
-                            enemy.bossHit();
-                            this.bossBar.setBossPercentage(enemy.bossEnergy);
-                            this.throwableObjects.splice(index, 1);
-                        }
+                        this.handleBottleHit(enemy, bottle, index, indexOfEnemy);
                     }
                 });
-            }, 50);
-        });
+            });
+        }, 50);
+    }
+
+    /**
+     * Handles the bottle hitting an enemy, performing the appropriate action based on the enemy type.
+     * @param {Object} enemy - The enemy that is hit by the bottle.
+     * @param {Object} bottle - The bottle that hit the enemy.
+     * @param {number} bottleIndex - The index of the bottle in the throwableObjects array.
+     * @param {number} enemyIndex - The index of the enemy in the enemies array.
+     */
+    handleBottleHit(enemy, bottle, bottleIndex, enemyIndex) {
+        if (enemy instanceof Chick || enemy instanceof Chicken) {
+            this.handleChickHit(enemy, bottle, bottleIndex, enemyIndex);
+        } else if (enemy instanceof Endboss) {
+            this.handleEndbossHit(enemy, bottle, bottleIndex);
+        }
+    }
+
+    /**
+     * Handles the hit on a Chick or Chicken enemy.
+     * @param {Object} enemy - The Chick or Chicken that was hit.
+     * @param {Object} bottle - The bottle that hit the enemy.
+     * @param {number} bottleIndex - The index of the bottle in the throwableObjects array.
+     * @param {number} enemyIndex - The index of the enemy in the enemies array.
+     */
+    handleChickHit(enemy, bottle, bottleIndex, enemyIndex) {
+        enemy.isDead = true;
+        playSound('hit_enemy');
+        bottle.isSplashed = true;
+        bottle.splashAnimation();
+        enemy.enemyHit();
+        this.removeEnemyAndBottle(enemyIndex, bottleIndex);
+    }
+
+    /**
+     * Handles the hit on the Endboss.
+     * @param {Object} enemy - The Endboss that was hit.
+     * @param {Object} bottle - The bottle that hit the enemy.
+     * @param {number} bottleIndex - The index of the bottle in the throwableObjects array.
+     */
+    handleEndbossHit(enemy, bottle, bottleIndex) {
+        bottle.isSplashed = true;
+        playSound('boss_hit');
+        bottle.splashAnimation();
+        playSound('hit_enemy');
+        enemy.bossHit();
+        this.bossBar.setBossPercentage(enemy.bossEnergy);
+        this.throwableObjects.splice(bottleIndex, 1);
+    }
+
+    /**
+     * Removes both the enemy and the bottle from their respective arrays.
+     * @param {number} enemyIndex - The index of the enemy to be removed.
+     * @param {number} bottleIndex - The index of the bottle to be removed.
+     */
+    removeEnemyAndBottle(enemyIndex, bottleIndex) {
+        setTimeout(() => {
+            this.level.enemies.splice(enemyIndex, 1);
+            this.throwableObjects.splice(bottleIndex, 1);
+        }, 400);
     }
 
     /**
@@ -115,16 +156,16 @@ class World {
     stompEnemy() {
         setInterval(() => {
             this.level.enemies.forEach((enemy, indexOfEnemy) => {
-                if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead) {
+                if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.isDead && this.character.y <= enemy.y +10) {
                     enemy.isDead = true;
                     playSound('stomp');
                     enemy.enemyHit();
                     setTimeout(() => {
                         this.level.enemies.splice(indexOfEnemy, 1);
-                    }, 1000);
+                    }, 250);
+                    this.character.speedY = -10;
                 }
-            }
-            )
+            });
         }, 50);
     }
 
