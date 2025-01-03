@@ -7,10 +7,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     background-image: url(img/5_background/mybg.webp);
-    background-repeat: no-repeat;
     background-size: cover;
-    height: 98vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
 }
 
 .homescreen-buttons {
@@ -39,7 +43,7 @@ canvas {
         width: 100% !important;
     }
 
-    h1 {
+    .name {
         display: none !important;
     }
 
@@ -51,6 +55,7 @@ canvas {
 }
 
 @media only screen and (max-height: 480px) {
+
     canvas {
         width: 90vw !important;
         height: 80vh;
@@ -67,7 +72,7 @@ canvas {
         margin: 5px !important;
     }
 
-    h1 {
+    .name {
         display: none !important;
     }
 
@@ -84,6 +89,14 @@ canvas {
         background-image: url('img/9_intro_outro_screens/win/win_1.png');
         background-size: contain !important;
     }
+
+    .impressum {
+        width: 400px !important;
+        height: 300px !important;
+        font-weight: 400 !important;
+        font-style: normal !important;
+        font-size: 8px !important;
+    }
 }
 
 h1 {
@@ -96,19 +109,20 @@ h1 {
 }
 
 .start-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-image: url('img/9_intro_outro_screens/start/startscreen_1.png');
     background-size: cover;
     background-position: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    z-index: 10;
+    background-repeat: no-repeat;
+
+    z-index: 999;
 }
 
 .game-over-screen {
@@ -207,7 +221,7 @@ h1 {
 .button-panel-main {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-between !important;
     align-items: center;
 }
 
